@@ -49,5 +49,46 @@ const getDetailUser = async(req,res,next) => {
     }
 }
 
+const updateUser = async(req,res,next) => {
+    try {
+        const {userID}= req.params
+        const { identity_type, identity_number, address } = req.body;
+        const user = await prisma.users.findUnique({
+            where: {
+                id: Number(userID)
+            }
+            ,include:{profile: true}
+        })
+        if(!user) return res.status(404).json({ success: false, message: 'Not Found', data: null });
+        const profile = await prisma.users.update({
+            where: {
+              id: Number(userID),
+            },
+            data: {
+              profile: {
+                update: {
+                  where: {
+                    user_id: Number(userID),
+                  },
+                  data: {
+                    identity_type: identity_type,
+                    identity_number: identity_number,
+                    address: address,
+                  },
+                },
+              },
+            },
+            include: {
+              profile: true,
+            },
+          });
+          delete profile.password;
 
-module.exports = {createUser, getAllusers, getDetailUser}
+    return res.status(200).json({ success: true, message: 'Profile updated', data: profile });
+       
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = {createUser, getAllusers, getDetailUser, updateUser}

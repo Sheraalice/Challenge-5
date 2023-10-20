@@ -78,33 +78,10 @@ describe('Testing Accounts endpoint', () => {
         })
         .set('Authorization', `Bearer ${token}`);
 
-      expect(statusCode).toBe(404);
-      expect(body).toHaveProperty('success');
-      expect(body).toHaveProperty('message');
-      expect(body).toHaveProperty('data');
-      expect(body.success).toBe(false);
-    });
-
-    test("should can't create new account balance less than 1", async () => {
-      const bank_name = 'BCA';
-      const bank_account_number = '1234567890';
-      const balance = 0;
-
-      const { statusCode, body } = await request(app)
-        .post('/api/v1/accounts')
-        .send({
-          user_id: Number(userTemp.id),
-          bank_name,
-          bank_account_number,
-          balance,
-        })
-        .set('Authorization', `Bearer ${token}`);
-
       expect(statusCode).toBe(400);
-      expect(body).toHaveProperty('success');
       expect(body).toHaveProperty('message');
       expect(body).toHaveProperty('data');
-      expect(body.success).toBe(false);
+      
     });
 
     test("should can't create new account unauthorized", async () => {

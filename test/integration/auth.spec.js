@@ -4,8 +4,8 @@ const app = require('../../app');
 describe('Testing Authentication endpoint', () => {
   describe('Testing Register POST /api/v1/auth/register endpoint', () => {
     test('should can register new account', async () => {
-      const name = 'Taufik Tetsing',
-        email = 'taufiktesting@dev.com',
+      const name = 'Shera Tetsing',
+        email = 'Sheratesting@dev.com',
         password = '12345678',
         identity_type = 'NO HP',
         identity_number = '08123456789',
@@ -36,8 +36,8 @@ describe('Testing Authentication endpoint', () => {
       expect(body.data.profile.address).toBe(address);
     });
     test("should can't register new account email alredy exist", async () => {
-      const name = 'Taufik Tetsing',
-        email = 'taufiktesting@dev.com',
+      const name = 'Shera Tetsing',
+        email = 'Sheratesting@dev.com',
         password = '12345678',
         identity_type = 'NO HP',
         identity_number = '08123456789',
@@ -75,11 +75,11 @@ describe('Testing Authentication endpoint', () => {
   });
 
   describe('Testing Login POST /api/v1/auth/login endpoint', () => {
-    let email = 'taufiktestlogin@dev.com';
+    let email = 'Sheratestlogin@dev.com';
     let password = '12345678';
     beforeEach(async () => {
       await request(app).post('/api/v1/auth/register').send({
-        name: 'Taufik Test Login',
+        name: 'Shera Test Login',
         email,
         password,
       });
@@ -115,8 +115,8 @@ describe('Testing Authentication endpoint', () => {
   });
 
   describe('Testing Authenticate GET /api/v1/auth/authenticate', () => {
-    const name = 'Taufik Test Authenticate';
-    const email = 'taufiktestauthenticate@dev.com';
+    const name = 'Shera Test Authenticate';
+    const email = 'Sheratestauthenticate@dev.com';
     const password = '12345678';
     let token = '';
     beforeEach(async () => {

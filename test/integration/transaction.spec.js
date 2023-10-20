@@ -2,8 +2,8 @@ const request = require('supertest');
 const app = require('../../app');
 let userTemp, transactionTemp, account1, account2, token;
 
-const name = 'Taufik Test Transaction';
-const email = 'taufiktesttransaction@dev.com';
+const name = 'Shera Test Transaction';
+const email = 'Sheratesttransaction@dev.com';
 const password = '12345678';
 
 describe('Testing Transactions endpoint', () => {
